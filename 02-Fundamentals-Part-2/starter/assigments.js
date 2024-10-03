@@ -46,3 +46,55 @@ console.log(populations.length === 4);
 
 const percents = [percentageOfWorld1(populations[0]), percentageOfWorld1(populations[1]), percentageOfWorld1(populations[2]), percentageOfWorld1(populations[3])];
 console.log(percents);
+
+const neighbours = new Array('Belarus', 'Latvia', 'Kazahstan', 'Finland');
+
+neighbours.push('Utopia');
+
+neighbours.pop();
+
+if (neighbours.includes('Germany')) {
+    console.log('Скорее всего это страна в центре Европы')
+} else {
+    console.log('Скорее всего страна не из центральной Европы')
+}
+
+const belarus = neighbours.indexOf('Belarus');
+
+console.log(belarus);
+
+neighbours[belarus] = 'Republic Belarus';
+
+console.log(neighbours);
+
+const myCountry = {
+    country: 'Russia',
+    capital: 'Moscow',
+    language: 'Russian',
+    population: 146,
+    neighbours: ['Belarus', 'Latvia', 'Kazahstan', 'Finland'],
+
+    describe: function() {
+        console.log(`${this.country} has ${this.population} milion ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}`);
+    },
+
+    checkIsland: function() {
+        this.isIsland = this.neighbours.length === 0 ? true : false
+    }
+}
+
+// console.log(`${myCountry.country} has ${myCountry.population} milion ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}`);
+
+myCountry.population += 2;
+console.log(myCountry.population);
+myCountry['population'] -= 2;
+console.log(myCountry.population);
+
+myCountry.describe();
+myCountry.checkIsland()
+
+console.log(myCountry);
+
+for (voter = 1; voter <= 50; voter++) {
+    console.log(`В данный момент голосует изюиратель номер ${voter}`)
+}

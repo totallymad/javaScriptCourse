@@ -61,7 +61,7 @@ console.log(`Чек составил: ${check}, чаевые - ${tip}, итог�
 
 //CHALLENGE #5
 
-const calcAverage = (a, b, c) => (a + b + c) / 3;
+/* const calcAverage = (a, b, c) => (a + b + c) / 3;
 
 
 const avgDolhins = calcAverage(85, 54, 41);
@@ -79,11 +79,11 @@ const checkWinner = (dolhpins, koalas) => {
     }
 }
 
-console.log(checkWinner(avgDolhins, avgKoalas));
+console.log(checkWinner(avgDolhins, avgKoalas)); */
 
 //CHALLENGE #2
 
-const calcTip = (check) => {
+/* const calcTip = (check) => {
     return check >= 50 && check <= 300 ? check * .15 : check * .2;  
 }
 
@@ -95,11 +95,11 @@ const total = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 
 console.log(bills);
 console.log(tips);
-console.log(total);
+console.log(total); */
 
 //CHALLENGE #3
 
-const mark = {
+/* const mark = {
     firstName: 'Mark',
     lastName: 'Miller',
     mass: 78,
@@ -132,4 +132,33 @@ if (john.bmi > mark.bmi) {
     console.log(`${mark.firstName}'s BMI (${mark.bmi}) is higher than ${john.firstName}'s (${john.bmi})!`)
 } else {
     console.log('Они равны')
+} */
+
+//CHALLENGE #4
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+
+const calcTip = (check) => {
+    return check >= 50 && check <= 300 ? check * .15 : check * .2;  
 }
+
+for (let i = 0; i < bills.length; i++) {
+    const tip = calcTip(bills[i]);
+    tips.push(tip);
+    totals.push(bills[i] + tip); 
+    console.log(`Tip (${i+1}) = ${tips[i]}`);
+    console.log(`Total (${i+1}) = ${totals[i]}`);
+}
+
+function calcAverage(arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+    }
+    return sum / arr.length;
+}
+
+console.log(calcAverage(totals));
+console.log(calcAverage(tips));

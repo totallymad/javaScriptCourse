@@ -1,3 +1,5 @@
+'use strict'
+
 // Лекции функции
 
 // function describeCountry(country, population, capitalCity) {
@@ -74,11 +76,11 @@ const myCountry = {
     population: 146,
     neighbours: ['Belarus', 'Latvia', 'Kazahstan', 'Finland'],
 
-    describe: function() {
+    describe: function () {
         console.log(`${this.country} has ${this.population} milion ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}`);
     },
 
-    checkIsland: function() {
+    checkIsland: function () {
         this.isIsland = this.neighbours.length === 0 ? true : false
     }
 }
@@ -97,4 +99,28 @@ console.log(myCountry);
 
 for (voter = 1; voter <= 50; voter++) {
     console.log(`В данный момент голосует изюиратель номер ${voter}`)
+}
+
+const populations2 = [1444, 34, 52, 1444];
+
+const percents2 = [];
+
+for (let i = 0; i < 4; i++) {
+    percents2.push(percentageOfWorld1(populations2[i]));
+}
+
+console.log(percents2);
+
+const listOfNeighbours = [
+    ['Canada', 'Mexico'],
+    ['Spain'],
+    ['Norway', 'Sweden', 'Russia']
+]
+
+for (let i = 0; i < listOfNeighbours.length; i++) {
+    // console.log(listOfNeighbours[i]);
+
+    for (let j = 0; j < listOfNeighbours[i].length; j++) {
+        console.log(`Сосед: ${listOfNeighbours[i][j]}`)
+    }
 }

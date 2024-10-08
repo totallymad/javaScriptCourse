@@ -12,6 +12,14 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
+  },
+
+  orderDelivery: function ({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
+    console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -27,3 +35,77 @@ const restaurant = {
     },
   },
 };
+
+//004 Destructuring Objects
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
+
+//другие имена
+const { name: restaurantName, openingHours: hours, categories: tags } = restaurant;
+console.log(restaurantName, hours, tags);
+
+//дефолтное значение
+const { menu = [], starterMenu: starter = [] } = restaurant;
+console.log(menu, starter);
+
+//изменение переменных
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, g: 14 };
+
+({ a, b } = obj);
+console.log(a, b);
+
+// nested objects
+const { fri: { open: o, close: c } } = openingHours;
+console.log(o, c);
+
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'Via del Sole, 21',
+  mainIndex: 2,
+  starterIndex: 2
+})
+
+restaurant.orderDelivery({
+  address: 'Via del Sole, 21',
+  starterIndex: 1
+})
+
+// ({ a, b } = obj);
+// console.log(a, b);
+
+
+//003 Destructuring Arrays
+/* const arr = [2, 3, 4];
+const a = arr[0];
+const b = arr[1];
+const c = arr[2];
+
+const [x, y, z] = arr;
+
+console.log(a, b, c);
+console.log(x, y, z);
+console.log(arr);
+
+let [main, , secondary] = restaurant.categories;
+console.log(main, secondary);
+
+//смена переменных
+[main, secondary] = [secondary, main];
+console.log(main, secondary);
+
+//Receive 2 retrun values from a function
+const [starter, mainCorse] = restaurant.order(2, 0);
+console.log(starter, mainCorse);
+
+//вложенная деструктуризация
+const nested = [2, 4, [5, 6]];
+// const [i, , j] = nested;
+// console.log(i, j);
+const [i, , [j, k]] = nested;
+console.log(i, j, k);
+
+//дефолтные значения
+const [p = 1, q = 1, r = 1] = [8];
+console.log(p, q, r); */

@@ -20,6 +20,15 @@ const restaurant = {
     console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
   },
 
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your pasta with ${ing1}, ${ing2} and ${ing3}`);
+  },
+
+  orderPizza: function (mainIng, ...otherIng) {
+    console.log(mainIng);
+    console.log(otherIng);
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -36,8 +45,120 @@ const restaurant = {
   },
 };
 
+//007 Short Circuiting (&& and )
+
+console.log('----------OR---------');
+// Использование любого типа данных, возврат любого типа данных, короткое замыкание
+console.log(3 || 'Ilya');
+console.log('' || 'Ilya');
+console.log(true || 0);
+console.log(undefined || null);
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('------------AND----------');
+
+console.log(0 && 'Ilya');
+console.log(7 && 'Ilya');
+
+console.log('Hello' && 23 && null && 'ilya');
+
+//практический пример
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'shpinach')
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach')
+
+//006 Rest Pattern and Parameters
+/* 
+//1) Деструктуризация
+
+// SPREAD, потому что на ПРАВОЙ стороне =
+const arr = [1, 2, ...[3, 4]];
+
+//REST, потому что слева от =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(pizza, risotto, otherFood);
+
+//Объекты
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+//2) Функции
+
+const add = function (...numbers) {
+  let num = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    num += numbers[i];
+  }
+  console.log(num);
+}
+add(2, 3);
+add(5, 3, 7, 2);
+add(4, 5, 6, 78, 8, 4, 3);
+
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+restaurant.orderPizza('mushrooms');
+ */
+
+//005 The Spread Operator (...)
+
+/* const arr = [7, 8, 9];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+const newArr = [1, 2, ...arr];
+console.log(badNewArr);
+console.log(newArr);
+
+console.log(newArr);
+console.log(...newArr);
+
+const newMenu = [...restaurant.mainMenu];
+console.log(newMenu);
+
+//копирование массива
+const mainMenuCopy = [...restaurant.mainMenu];
+
+//объединение массивов
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
+
+//Iterables: arrays, string, maps, sets. NOT OBJECTS
+const str = 'Ilya';
+const letters = [...str, '', 's.'];
+console.log(letters);
+console.log(...str);
+
+//пример из реального мира
+const ingridients = [prompt('Let\'s make pasta! Ingridient 1?'), prompt('Ingridient 2?'), prompt('Ingridient 3?')]
+console.log(ingridients);
+
+restaurant.orderPasta(ingridients[0], ingridients[1], ingridients[2]);
+restaurant.orderPasta(...ingridients);
+
+//Объекты
+const newRestoraunt = {foundingYear: 1998 ,...restaurant, founder: 'Guiseppe'};
+console.log(newRestoraunt);
+
+const restaurantCopy = {...restaurant};
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurant);
+console.log(restaurantCopy); */
+
 //004 Destructuring Objects
-const { name, openingHours, categories } = restaurant;
+/* const { name, openingHours, categories } = restaurant;
 console.log(name, openingHours, categories);
 
 //другие имена
@@ -71,7 +192,7 @@ restaurant.orderDelivery({
   address: 'Via del Sole, 21',
   starterIndex: 1
 })
-
+ */
 // ({ a, b } = obj);
 // console.log(a, b);
 
@@ -109,3 +230,4 @@ console.log(i, j, k);
 //дефолтные значения
 const [p = 1, q = 1, r = 1] = [8];
 console.log(p, q, r); */
+

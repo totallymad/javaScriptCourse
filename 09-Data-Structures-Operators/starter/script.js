@@ -45,76 +45,92 @@ const restaurant = {
   },
 };
 
-//007 Short Circuiting (&& and )
+//011 Looping Arrays The for-of Loop NOTE
 
-console.log('----------OR---------');
-// Использование любого типа данных, возврат любого типа данных, короткое замыкание
-console.log(3 || 'Ilya');
-console.log('' || 'Ilya');
-console.log(true || 0);
-console.log(undefined || null);
-console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-restaurant.numGuests = 23;
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guests1);
+for (const item of menu) console.log(item);
 
-const guests2 = restaurant.numGuests || 10;
-console.log(guests2);
-
-console.log('------------AND----------');
-
-console.log(0 && 'Ilya');
-console.log(7 && 'Ilya');
-
-console.log('Hello' && 23 && null && 'ilya');
-
-//практический пример
-if (restaurant.orderPizza) {
-  restaurant.orderPizza('mushrooms', 'shpinach')
+for (const [i, elem] of menu.entries()) {
+  console.log(`${i + 1}: ${elem}`);
 }
 
-restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach')
+// console.log([...menu.entries()]);
 
-//006 Rest Pattern and Parameters
-/* 
-//1) Деструктуризация
+//003 Destructuring Arrays NOTE
+/* const arr = [2, 3, 4];
+const a = arr[0];
+const b = arr[1];
+const c = arr[2];
 
-// SPREAD, потому что на ПРАВОЙ стороне =
-const arr = [1, 2, ...[3, 4]];
+const [x, y, z] = arr;
 
-//REST, потому что слева от =
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
+console.log(a, b, c);
+console.log(x, y, z);
+console.log(arr);
 
-const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(pizza, risotto, otherFood);
+let [main, , secondary] = restaurant.categories;
+console.log(main, secondary);
 
-//Объекты
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+//смена переменных
+[main, secondary] = [secondary, main];
+console.log(main, secondary);
 
-//2) Функции
+//Receive 2 retrun values from a function
+const [starter, mainCorse] = restaurant.order(2, 0);
+console.log(starter, mainCorse);
 
-const add = function (...numbers) {
-  let num = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    num += numbers[i];
-  }
-  console.log(num);
-}
-add(2, 3);
-add(5, 3, 7, 2);
-add(4, 5, 6, 78, 8, 4, 3);
+//вложенная деструктуризация
+const nested = [2, 4, [5, 6]];
+// const [i, , j] = nested;
+// console.log(i, j);
+const [i, , [j, k]] = nested;
+console.log(i, j, k);
 
-const x = [23, 5, 7];
-add(...x);
+//дефолтные значения
+const [p = 1, q = 1, r = 1] = [8];
+console.log(p, q, r); */
 
-restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
-restaurant.orderPizza('mushrooms');
+//004 Destructuring Objects NOTE
+/* const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
+
+//другие имена
+const { name: restaurantName, openingHours: hours, categories: tags } = restaurant;
+console.log(restaurantName, hours, tags);
+
+//дефолтное значение
+const { menu = [], starterMenu: starter = [] } = restaurant;
+console.log(menu, starter);
+
+//изменение переменных
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, g: 14 };
+
+({ a, b } = obj);
+console.log(a, b);
+
+// nested objects
+const { fri: { open: o, close: c } } = openingHours;
+console.log(o, c);
+
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'Via del Sole, 21',
+  mainIndex: 2,
+  starterIndex: 2
+})
+
+restaurant.orderDelivery({
+  address: 'Via del Sole, 21',
+  starterIndex: 1
+})
  */
+// ({ a, b } = obj);
+// console.log(a, b);
 
-//005 The Spread Operator (...)
+//005 The Spread Operator (...) NOTE
 
 /* const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
@@ -157,77 +173,116 @@ restaurantCopy.name = 'Ristorante Roma';
 console.log(restaurant);
 console.log(restaurantCopy); */
 
-//004 Destructuring Objects
-/* const { name, openingHours, categories } = restaurant;
-console.log(name, openingHours, categories);
+//006 Rest Pattern and Parameters NOTE
+/*
+//1) Деструктуризация
 
-//другие имена
-const { name: restaurantName, openingHours: hours, categories: tags } = restaurant;
-console.log(restaurantName, hours, tags);
+// SPREAD, потому что на ПРАВОЙ стороне =
+const arr = [1, 2, ...[3, 4]];
 
-//дефолтное значение
-const { menu = [], starterMenu: starter = [] } = restaurant;
-console.log(menu, starter);
+//REST, потому что слева от =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
 
-//изменение переменных
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 7, g: 14 };
+const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(pizza, risotto, otherFood);
 
-({ a, b } = obj);
-console.log(a, b);
+//Объекты
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
 
-// nested objects
-const { fri: { open: o, close: c } } = openingHours;
-console.log(o, c);
+//2) Функции
 
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Via del Sole, 21',
-  mainIndex: 2,
-  starterIndex: 2
-})
+const add = function (...numbers) {
+  let num = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    num += numbers[i];
+  }
+  console.log(num);
+}
+add(2, 3);
+add(5, 3, 7, 2);
+add(4, 5, 6, 78, 8, 4, 3);
 
-restaurant.orderDelivery({
-  address: 'Via del Sole, 21',
-  starterIndex: 1
-})
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+restaurant.orderPizza('mushrooms');
  */
-// ({ a, b } = obj);
-// console.log(a, b);
+
+//007 Short Circuiting (&& and ) NOTE
+
+/* console.log('----------OR---------');
+// Использование любого типа данных, возврат любого типа данных, короткое замыкание
+console.log(3 || 'Ilya');
+console.log('' || 'Ilya');
+console.log(true || 0);
+console.log(undefined || null);
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('------------AND----------');
+
+console.log(0 && 'Ilya');
+console.log(7 && 'Ilya');
+
+console.log('Hello' && 23 && null && 'ilya');
+
+//практический пример
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'shpinach')
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach') */
+
+//008 The Nullish Coalescing Operator () NOTE
+
+/* restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+//nullish: null and undefined (NOT 0 or '')
+const guestsCorrect = restaurant.numGuests ?? 10;
+console.log(guestsCorrect); */
+
+//009 Logical Assignment Operators NOTE
+
+/* const rest1 = {
+  name: 'Capri',
+  // numGuests: 20,
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi'
+};
 
 
-//003 Destructuring Arrays
-/* const arr = [2, 3, 4];
-const a = arr[0];
-const b = arr[1];
-const c = arr[2];
+//OR assigment operator
+// rest2.numGuests = rest2.numGuests || 10;
+// rest1.numGuests = rest1.numGuests || 10;
 
-const [x, y, z] = arr;
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
 
-console.log(a, b, c);
-console.log(x, y, z);
-console.log(arr);
 
-let [main, , secondary] = restaurant.categories;
-console.log(main, secondary);
+//AND assigment operator
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
 
-//смена переменных
-[main, secondary] = [secondary, main];
-console.log(main, secondary);
+rest1.owner &&= '<ANONYMOUS>';
+rest2.owner &&= '<ANONYMOUS>';
 
-//Receive 2 retrun values from a function
-const [starter, mainCorse] = restaurant.order(2, 0);
-console.log(starter, mainCorse);
+console.log(rest1);
+console.log(rest2); */
 
-//вложенная деструктуризация
-const nested = [2, 4, [5, 6]];
-// const [i, , j] = nested;
-// console.log(i, j);
-const [i, , [j, k]] = nested;
-console.log(i, j, k);
 
-//дефолтные значения
-const [p = 1, q = 1, r = 1] = [8];
-console.log(p, q, r); */
 

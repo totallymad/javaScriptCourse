@@ -1,7 +1,5 @@
 'use strict';
 
-//challenge#1
-
 const game = {
     team1: 'Bayern Munich',
     team2: 'Borrussia Dortmund',
@@ -42,12 +40,52 @@ const game = {
         x: 3.25,
         team2: 6.5,
     },
-    printGoals: function() {
+    printGoals: function () {
 
     }
 };
 
+//CHALLENGE #2
+
 //1
+for (const [i, player] of game.scored.entries()) {
+    console.log(`Goal ${i + 1}: ${player}`);
+}
+
+//2
+// console.log(Object.entries(game.odds));
+const odds = Object.values(game.odds);
+let average = 0;
+
+for (const odd of odds) {
+    average += odd;
+}
+
+average /= odds.length;
+console.log(average);
+
+//3
+const entireOdds = Object.entries(game.odds);
+
+for (const [key, value] of entireOdds) {
+    const teamStr = key === 'x' ? 'draw' : `victory ${game[key]}`;
+    console.log(`Odd of ${teamStr}: ${value}`);
+}
+
+//4
+
+const scorers = {};
+
+for (const player of game.scored) {
+    scorers[player] = (scorers[player] || 0) + 1;
+}
+
+console.log(scorers);
+
+
+//challenge#1
+
+/* //1
 const [players1, players2] = game.players;
 console.log(players1, players2);
 
@@ -79,4 +117,5 @@ printGoals(...game.scored);
 
 //7 
 team1 < team2 && console.log('Team 1 is more likely to win');
-team2 < team1 && console.log('Team 2 is more likely to win');
+team2 < team1 && console.log('Team 2 is more likely to win'); */
+

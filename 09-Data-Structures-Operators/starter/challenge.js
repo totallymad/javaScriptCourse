@@ -170,6 +170,15 @@ console.log(text);
 
 const textLowerTrim = text.toLowerCase().replaceAll(' ', '');
 console.log(textLowerTrim);
+// console.log(textLowerTrim.replaceAll('_', ''));
+const arr = textLowerTrim.split('\n');
+console.log(arr);
+
+for (const i of arr) {
+    index = i.indexOf('_') + 1;
+    i.replace(index, index.toUpperCase());
+    console.log(i.replace(index, index.toUpperCase()));
+}
 
 
 // for (let i of textLower) {

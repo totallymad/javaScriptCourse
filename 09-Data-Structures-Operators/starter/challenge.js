@@ -119,7 +119,7 @@ printGoals(...game.scored);
 team1 < team2 && console.log('Team 1 is more likely to win');
 team2 < team1 && console.log('Team 2 is more likely to win'); */
 
-const gameEvents = new Map([
+/* const gameEvents = new Map([
     [17, '⚽ GOAL'],
     [36, '� Substitution'],
     [47, '⚽ GOAL'],
@@ -153,7 +153,7 @@ console.log(`An event happened, on average, every ${time / gameEvents.size} minu
 for (const [key, value] of gameEvents) {
     let str = key <= 45 ? 'FIRST HALF' : 'SECOND HALF';
     console.log(`${str} ${key}: ${value}`);
-}
+} */
 // CHALLENGE #4
 
 document.body.append(document.createElement('textarea'));

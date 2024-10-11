@@ -129,8 +129,8 @@ console.log(rest.size);
 console.log(rest.get(arr)); */
 //021 Working With Strings - Part 1 NOTE
 
-const airline = 'TAP Air Portugal';
-const plane = 'A320';
+// const airline = 'TAP Air Portugal';
+// const plane = 'A320';
 
 /* console.log(plane[0]);
 console.log(plane[1]);

@@ -47,7 +47,7 @@ const game = {
 
 //CHALLENGE #2
 
-//1
+/* //1
 for (const [i, player] of game.scored.entries()) {
     console.log(`Goal ${i + 1}: ${player}`);
 }
@@ -80,7 +80,7 @@ for (const player of game.scored) {
     scorers[player] = (scorers[player] || 0) + 1;
 }
 
-console.log(scorers);
+console.log(scorers); */
 
 
 //challenge#1
@@ -119,3 +119,28 @@ printGoals(...game.scored);
 team1 < team2 && console.log('Team 1 is more likely to win');
 team2 < team1 && console.log('Team 2 is more likely to win'); */
 
+// CHALLENGE #4
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button')); 
+
+// const text = document.querySelector('textarea').value;
+const text = `underscore_case
+first_name
+Some_Variable
+ calculate_AGE
+delayed_departure`
+
+console.log(text);
+
+const textLowerTrim = text.toLowerCase().replaceAll(' ', '');
+console.log(textLowerTrim);
+
+
+// for (let i of textLower) {
+//     if (i === '_') {
+//         i = 'A';
+//         i = i.toLocaleLowerCase;
+//     }
+//     console.log(i);
+// }

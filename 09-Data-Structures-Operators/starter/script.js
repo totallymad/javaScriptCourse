@@ -54,14 +54,88 @@ const restaurant = {
 
 };
 
+// 018 Maps Iteration NOTE
+
+/* const question = new Map([
+  ['question', 'What is the best programming langeuga in the wrold?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct answer 😎'],
+  [false, 'Try again!']
+]);
+
+console.log(question);
+
+
+//convert object to map
+console.log(Object.entries(hours));
+const hoursMap = new Map(Object.entries(hours));
+console.log(hoursMap);
+
+// Quiz app
+console.log(question.get('question'));
+
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+
+const answer = 3;
+// const answer = +prompt('Your answer');
+console.log(answer);
+
+console.log(question.get(answer === question.get('correct')));
+
+//conver map to array 
+console.log([...question]);
+// console.log(question.entries());
+console.log([...question.keys()]);
+console.log([...question.values()]); */
+
+
+//017 Maps Fundamentals NOTE
+/* 
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal'));
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open 😊')
+  .set(false, 'We are closed 😢');
+
+console.log(rest.get('name'));
+console.log(rest.get(true));
+console.log(rest.get(1));
+
+const time = 8;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+console.log(rest.has('categories'));
+rest.delete(2);
+
+const arr = [1, 2];
+rest.set(arr, 'Test');
+rest.set(document.querySelector('h1'), 'Heading')
+console.log(rest);
+console.log(rest.size);
+// rest.clear();
+// console.log(rest);
+
+console.log(rest.get(arr)); */
+
 //016 Sets NOTE
 
-const ordersSet = new Set([
-  'Pasta', 
-  'Pizza', 
-  'Pizza', 
-  'Risotto', 
-  'Pasta', 
+/* const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
   'Pizza'
 ]);
 console.log(ordersSet);
@@ -87,7 +161,7 @@ console.log(staff);
 console.log(staffUnique);
 console.log(new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size);
 
-console.log(new Set('ilyakurak').size);
+console.log(new Set('ilyakurak').size); */
 
 
 //014 Looping Objects Object Keys, Values, and Entries NOTE

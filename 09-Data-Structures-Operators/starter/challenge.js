@@ -154,3 +154,28 @@ for (const [key, value] of gameEvents) {
     let str = key <= 45 ? 'FIRST HALF' : 'SECOND HALF';
     console.log(`${str} ${key}: ${value}`);
 }
+// CHALLENGE #4
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button')); 
+
+// const text = document.querySelector('textarea').value;
+const text = `underscore_case
+first_name
+Some_Variable
+ calculate_AGE
+delayed_departure`
+
+console.log(text);
+
+const textLowerTrim = text.toLowerCase().replaceAll(' ', '');
+console.log(textLowerTrim);
+
+
+// for (let i of textLower) {
+//     if (i === '_') {
+//         i = 'A';
+//         i = i.toLocaleLowerCase;
+//     }
+//     console.log(i);
+// }

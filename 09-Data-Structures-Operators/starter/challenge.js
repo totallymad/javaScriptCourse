@@ -157,28 +157,40 @@ for (const [key, value] of gameEvents) {
 // CHALLENGE #4
 
 document.body.append(document.createElement('textarea'));
-document.body.append(document.createElement('button')); 
+document.body.append(document.createElement('button'));
 
 // const text = document.querySelector('textarea').value;
 const text = `underscore_case
 first_name
 Some_Variable
  calculate_AGE
+delayed_departure
 delayed_departure`
 
 console.log(text);
 
 const textLowerTrim = text.toLowerCase().replaceAll(' ', '');
 console.log(textLowerTrim);
-// console.log(textLowerTrim.replaceAll('_', ''));
 const arr = textLowerTrim.split('\n');
 console.log(arr);
 
-for (const i of arr) {
-    index = i.indexOf('_') + 1;
-    i.replace(index, index.toUpperCase());
-    console.log(i.replace(index, index.toUpperCase()));
+const result = function (array) {
+    for (let i = 0; i < array.length; i++) {
+        let [a, b] = array[i].split('_');
+        let bUp = b[0].toUpperCase() + b.slice(1);
+        const c = [a, bUp].join('').padEnd(20);
+        console.log(`${c} ${'✅'.repeat(i + 1)}`);
+    }
 }
+
+result(arr);
+
+// for (let i = 0; i < arr.length; i++) {
+//     let [a, b] = arr[i].split('_');
+//     let bUp = b[0].toUpperCase() + b.slice(1);
+//     const c = [a, bUp].join('').padEnd(20);
+//     console.log(`${c} ${'✅'.repeat(i + 1)}`);
+// }
 
 
 // for (let i of textLower) {

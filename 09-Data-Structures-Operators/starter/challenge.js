@@ -154,49 +154,65 @@ for (const [key, value] of gameEvents) {
     let str = key <= 45 ? 'FIRST HALF' : 'SECOND HALF';
     console.log(`${str} ${key}: ${value}`);
 } */
-// CHALLENGE #4
+// CHALLENGE #4 NOTE
 
-document.body.append(document.createElement('textarea'));
-document.body.append(document.createElement('button'));
-
-// const text = document.querySelector('textarea').value;
-const text = `underscore_case
+/* 
+underscore_case
 first_name
 Some_Variable
  calculate_AGE
 delayed_departure
-delayed_departure`
+delayed_departure
+ */
 
-console.log(text);
+// Добавляем textarea и кнопку на страницу
+/* const textarea = document.createElement('textarea');
+const button = document.createElement('button');
+button.textContent = 'Обработать текст';
 
-const textLowerTrim = text.toLowerCase().replaceAll(' ', '');
-console.log(textLowerTrim);
-const arr = textLowerTrim.split('\n');
-console.log(arr);
+document.body.append(textarea);
+document.body.append(button);
 
-const result = function (array) {
-    for (let i = 0; i < array.length; i++) {
-        let [a, b] = array[i].split('_');
-        let bUp = b[0].toUpperCase() + b.slice(1);
-        const c = [a, bUp].join('').padEnd(20);
-        console.log(`${c} ${'✅'.repeat(i + 1)}`);
+// Добавляем обработчик событий на кнопку
+button.addEventListener('click', () => {
+    // Получаем текст, преобразуем к нижнему регистру и убираем пробелы
+    const text = textarea.value;
+    const arr = text.toLowerCase().replace(' ', '').split('\n');
+
+    console.log(arr);
+
+    // Обрабатываем каждую строку
+    arr.forEach((item, index) => {
+        let [a, b] = item.split('_');
+        
+        // Делаем первую букву второй части заглавной
+        let bUp = b.charAt(0).toUpperCase() + b.slice(1);
+        
+        // Объединяем строки и выравниваем по ширине 20 символов
+        const formattedString = `${a}${bUp}`.padEnd(20);
+        
+        // Выводим результат с соответствующим количеством галочек
+        console.log(`${formattedString} ${'✅'.repeat(index + 1)}`);
+    });
+}); */
+
+//Bonus exercise
+
+// Data needed for a later exercise
+/* const flights =
+    '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+for (const flight of flights.split('+')) {
+
+    const [type, from, to, time] = flight.split(';');
+    const typeCorrect = type.replaceAll('_', ' ').trim();
+    const fromCorrect = from.slice(0, 3).toLocaleUpperCase();
+    const toCorrect = to.slice(0, 3).toLocaleUpperCase();
+    const timeCorrect = time.replace(':', 'h')
+
+    if (typeCorrect.includes('Delayed')) {
+        console.log(`🔴 ${typeCorrect} from ${fromCorrect} to ${toCorrect} (${timeCorrect})`.padStart(45));
+    } else {
+        console.log(`${typeCorrect} from ${fromCorrect} to ${toCorrect} (${timeCorrect})`.padStart(45));
     }
-}
-
-result(arr);
-
-// for (let i = 0; i < arr.length; i++) {
-//     let [a, b] = arr[i].split('_');
-//     let bUp = b[0].toUpperCase() + b.slice(1);
-//     const c = [a, bUp].join('').padEnd(20);
-//     console.log(`${c} ${'✅'.repeat(i + 1)}`);
-// }
-
-
-// for (let i of textLower) {
-//     if (i === '_') {
-//         i = 'A';
-//         i = i.toLocaleLowerCase;
-//     }
-//     console.log(i);
-// }
+} */

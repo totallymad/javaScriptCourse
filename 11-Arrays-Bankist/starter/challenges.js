@@ -45,6 +45,26 @@ checkDogs(julia, kate); */
 };
 
 const julia = [5, 2, 4, 1, 15, 8, 3];
-const kate =  [16, 6, 10, 5, 6, 1, 4];
+const kate = [16, 6, 10, 5, 6, 1, 4];
 
 calcAverageHumanAge(julia, kate) */
+
+//CHALLENGE #3
+/* 
+const calcAverageHumanAgeArrow = ages =>
+    ages
+        .map(age => {
+            if (age <= 2) return 2 * age
+            else return 16 + age * 4
+        })
+        .filter(age => age >= 18)
+        .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+
+const julia = [5, 2, 4, 1, 15, 8, 3];
+const kate = [16, 6, 10, 5, 6, 1, 4];
+
+const avg1 = calcAverageHumanAgeArrow(julia);
+const avg2 = calcAverageHumanAgeArrow(kate);
+
+console.log(avg1, avg2); */
+

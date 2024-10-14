@@ -61,6 +61,60 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+//008 Creating DOM Elements NOTE
+
+const displayMovements = function (movements) {
+
+  containerMovements.innerHTML = '';
+
+  movements.forEach(function (mov, i) {
+
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    const html = `
+        <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+          <div class="movements__value">${mov}</div>
+        </div>
+        `;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+
+  })
+};
+
+displayMovements(account1.movements);
+
+
+//012 Computing Usernames NOTE
+
+const user = 'Steven Thomas Williams'; // stw
+
+const createUsernames = function (accs) {
+
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLocaleLowerCase()
+      .split(' ')
+      .map(word => word[0].toLocaleUpperCase())
+      .join('');
+  })
+
+}
+
+createUsernames(accounts);
+console.log(accounts);
+
+//014 reduce NOTE
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`
+};
+
+calcDisplayBalance(account1.movements);
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -138,32 +192,10 @@ currenciesUnique.forEach(function(value, _, map) {
   console.log(`${value}: ${value}`);
 }) */
 
-//008 Creating DOM Elements NOTE
 
-const displayMovements = function (movements) {
-
-  containerMovements.innerHTML = '';
-
-  movements.forEach(function (mov, i) {
-
-    const type = mov > 0 ? 'deposit' : 'withdrawal';
-
-    const html = `
-        <div class="movements__row">
-          <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-          <div class="movements__value">${mov}</div>
-        </div>
-        `;
-
-    containerMovements.insertAdjacentHTML('afterbegin', html);
-
-  })
-};
-
-displayMovements(account1.movements);
 
 //011 The map Method NOTE
-
+/* 
 const eurToUsd = 1.1;
 
 const movementsUSD = movements.map(function (mov) {
@@ -189,4 +221,65 @@ const movementsDesctiptions = movements.map((mov, i) =>
   `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`
 );
 
-console.log(movementsDesctiptions);
+console.log(movementsDesctiptions); */
+
+//013 The filter Method NOTE
+
+/* const deposits = movements.filter(function(mov) {
+  return mov > 0;
+})
+
+console.log(movements);
+console.log(deposits);
+
+const depositsFor = []
+for( const mov of movements) if (mov > 0) depositsFor.push(mov);
+
+console.log(depositsFor);
+
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(withdrawals); */
+
+//014 The reduce Method NOTE
+/* 
+console.log(movements);
+
+//accumulator -> snowball
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration number ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+
+console.log(balance);
+
+let balanze2 = 0;
+for (const mov of movements) {
+  balanze2 += mov;
+}
+console.log(balanze2);
+
+
+//MAX value
+
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) {
+    return acc 
+  } else {
+    return mov
+  }
+}, movements[0])
+
+console.log(max); */
+
+
+//016 The Magic of Chaining Methods NOTE
+
+const eurToUsd = 1.1;
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov);
+
+console.log(totalDepositsUSD);

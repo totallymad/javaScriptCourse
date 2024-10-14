@@ -65,12 +65,6 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
-
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
@@ -111,7 +105,7 @@ console.log(letters.join(' - ')); */
 
 //004 The new at Method NOTE
 
-const arr = [23, 11, 64];
+/* const arr = [23, 11, 64];
 console.log(arr[0]);
 console.log(arr.at(0));
 
@@ -121,4 +115,78 @@ console.log(arr.slice(-1)[0]);
 console.log(arr.at(-1));
 
 console.log('ilya'.at(0));
-console.log('ilya'.at(-1));
+console.log('ilya'.at(-1)); */
+
+//006 forEach With Maps and Sets NOTE
+
+/* //Map
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function(value, key, map) {
+  console.log(`${key}: ${value}`);
+})
+
+//Set
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+
+console.log(currenciesUnique);
+currenciesUnique.forEach(function(value, _, map) {
+  console.log(`${value}: ${value}`);
+}) */
+
+//008 Creating DOM Elements NOTE
+
+const displayMovements = function (movements) {
+
+  containerMovements.innerHTML = '';
+
+  movements.forEach(function (mov, i) {
+
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    const html = `
+        <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+          <div class="movements__value">${mov}</div>
+        </div>
+        `;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+
+  })
+};
+
+displayMovements(account1.movements);
+
+//011 The map Method NOTE
+
+const eurToUsd = 1.1;
+
+const movementsUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+});
+
+console.log(movements, movementsUSD);
+
+const movementsUSDfor = [];
+
+for (const mov of movements) {
+  movementsUSDfor.push(mov * eurToUsd)
+}
+
+console.log(movementsUSDfor);
+
+const movementsUSDarr = movements.map(mov => mov * eurToUsd
+);
+
+console.log(movementsUSDarr);
+
+const movementsDesctiptions = movements.map((mov, i) =>
+  `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`
+);
+
+console.log(movementsDesctiptions);

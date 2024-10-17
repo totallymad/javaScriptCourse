@@ -167,6 +167,35 @@ const updateUI = function (acc) {
   calcDsiplaySummary(acc);
 }
 
+const startLogOutTimer = function () {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+
+    // In each call, print the remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // When time = 0 seconds stop timer and logout user
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = `Log in to get started`
+      containerApp.style.opacity = 0;
+    }
+    // Decrese 1s
+    time--;
+
+  }
+
+  // Set time to 5 minutes
+  let time = 120;
+
+  // Call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+
+  return timer;
+}
+
 //014 reduce NOTE
 
 const calcDisplayBalance = function (acc) {
@@ -198,13 +227,13 @@ const calcDsiplaySummary = function (acc) {
 }
 
 // Event handler
-let currentAccount;
+let currentAccount, timer;
 
 //FAKE ALWAUYS LOG IN
 
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 
 
@@ -221,8 +250,6 @@ btnLogin.addEventListener('click', (e) => {
     containerApp.style.opacity = 100;
 
     //Current date 
-
-    const now = new Date();
     // const day = `${now.getDate()}`.padStart(2, 0);
     // const month = `${now.getMonth() + 1}`.padStart(2, 0);
     // const year = now.getFullYear();
@@ -230,6 +257,7 @@ btnLogin.addEventListener('click', (e) => {
     // const minutes = `${now.getMinutes()}`.padStart(2, 0);
     // labelDate.textContent = `${day}/${month}/${year}, ${hour}:${minutes}`;
     //Experimenting API
+    const now = new Date();
     const options = {
       hour: 'numeric',
       minute: 'numeric',
@@ -246,6 +274,11 @@ btnLogin.addEventListener('click', (e) => {
     //Clear input fileds
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
+
+    //Timer
+    if (timer) clearInterval(timer);
+
+    timer = startLogOutTimer();
 
     //UPDATE UI
     updateUI(currentAccount);
@@ -270,6 +303,10 @@ btnTransfer.addEventListener('click', (e) => {
 
     //UPDATE UI
     updateUI(currentAccount);
+
+    //Reset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
 });
 
@@ -288,6 +325,10 @@ btnLoan.addEventListener('click', (e) => {
 
       // Update UI
       updateUI(currentAccount);
+
+      //Reset timer
+      clearInterval(timer);
+      timer = startLogOutTimer();
     }, 2500);
 
   }
@@ -456,7 +497,7 @@ console.log(2 ** 53 + 120);
 console.log(52904895082339058326209n);
 console.log(BigInt(52904895012425));
 
-//Operations 
+//Operations
 console.log(10000n + 10000n);
 console.log(123815092185903268n * 18690383905n);
 // console.log(Math.sqrt(16n));
@@ -478,7 +519,7 @@ console.log(huge + ' is REALLY big!!!');
 console.log(10n / 3n);
 console.log(10 / 3); */
 
-// 08 Creating Dates NOTE 
+// 08 Creating Dates NOTE
 
 // Create a date
 

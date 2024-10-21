@@ -1,7 +1,7 @@
 'use strict';
 
 // CHALLENGE #1
-const Car = function (make, speed) {
+/* const Car = function (make, speed) {
     this.make = make;
     this.speed = speed;
 }
@@ -27,10 +27,10 @@ bmw.brake();
 bmw.brake();
 bmw.brake();
 mercedec.accelerate();
-mercedec.brake();
+mercedec.brake(); */
 
 // CHALLENGE #2
-/* class CarCl {
+class CarCl {
     constructor(make, speed) {
         this.make = make;
         this.speed = speed;
@@ -44,6 +44,7 @@ mercedec.brake();
     brake() {
         this.speed -= 5;
         console.log(`${this.make} speed is ${this.speed}`);
+        return this
     }
 
     get speedUS() {
@@ -67,24 +68,24 @@ ford.brake();
 ford.brake();
 console.log(ford.speedUS);
 ford.speedUS = 50;
-console.log(ford); */
+console.log(ford);
 
 
 // CHALLENGE #3
-
-const EV = function(make, speed, charge) {
+/* 
+const EV = function (make, speed, charge) {
     Car.call(this, make, speed);
     this.charge = charge;
 };
 
 EV.prototype = Object.create(Car.prototype);
 
-EV.prototype.chargeBattery = function(chargeTo) {
+EV.prototype.chargeBattery = function (chargeTo) {
     this.charge = chargeTo;
     console.log(`Battery of ${this.make} charged on ${this.charge}%`);
 }
 
-EV.prototype.accelerate = function() {
+EV.prototype.accelerate = function () {
     this.speed += 20;
     this.charge -= 1;
     console.log(`${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`);
@@ -97,5 +98,40 @@ tesla.accelerate();
 tesla.accelerate();
 tesla.brake();
 tesla.brake();
-tesla.brake(); 
-tesla.accelerate();
+tesla.brake();
+tesla.accelerate(); */
+
+// CHALLENGE #4
+
+class EVCl extends CarCl {
+    #charge;
+
+    constructor(make, speed, charge) {
+        super(make, speed);
+        this.#charge = charge;
+    }
+
+    chargeBattery(chargeTo) {
+        this.#charge = chargeTo;
+        return this;
+    }
+
+    accelerate() {
+        this.speed += 20;
+        this.#charge -= 1;
+        console.log(`${this.make} going at ${this.speed} km/h, with a charge of ${this.#charge}%`);
+        return this;
+    }
+}
+
+const rivian = new EVCl('Rivian', 120, 23);
+console.log(rivian);
+rivian.chargeBattery(80);
+rivian.accelerate();
+rivian.accelerate();
+rivian.brake();
+rivian.brake();
+rivian.brake();
+rivian.accelerate();
+rivian.accelerate().accelerate().brake().brake().chargeBattery(100);
+console.log(rivian);
